@@ -131,29 +131,6 @@
       box-shadow: 0 10px 24px rgba(0,0,0,0.35);
     }
 
-    .top-banner {
-      width: calc(100% + clamp(48px, 10vw, 184px));
-      height: 44vh;
-      min-height: 340px;
-      margin-left: calc(clamp(24px, 5vw, 92px) * -1);
-      margin-right: calc(clamp(24px, 5vw, 92px) * -1);
-      margin-top: -12px;
-      margin-bottom: 34px;
-      position: relative;
-      overflow: hidden;
-      background: url('overton-hero.png.png') center / cover no-repeat;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .top-banner::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(5,5,5,0.05), rgba(5,5,5,0.18) 55%, var(--bg));
-      pointer-events: none;
-    }
-
     .brand-lockup {
       display: grid;
       grid-template-columns: auto 1fr;
@@ -186,16 +163,40 @@
     }
 
     .hero-grid {
-      display: block;
-      padding-bottom: 104px;
-      max-width: 760px;
+      position: relative;
+      min-height: 520px;
+      margin-bottom: 104px;
+      padding: clamp(32px, 5vw, 72px);
+      display: flex;
+      align-items: flex-end;
+      max-width: none;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: url('overton-hero-right.png') center / cover no-repeat;
+      box-shadow: 0 24px 90px rgba(0,0,0,0.55);
+    }
+
+    .hero-grid::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(5,5,5,0.82), rgba(5,5,5,0.38) 48%, rgba(5,5,5,0.12)),
+        linear-gradient(to bottom, rgba(5,5,5,0.05), rgba(5,5,5,0.56));
+      pointer-events: none;
     }
 
     
 
     
 
-    .copy { padding-bottom: 22px; max-width: 620px; margin-top: 0; }
+    .copy {
+      position: relative;
+      z-index: 2;
+      padding-bottom: 0;
+      max-width: 620px;
+      margin-top: 0;
+    }
 
     .kicker {
       color: var(--muted);
@@ -348,20 +349,84 @@
 
     @media (max-width: 900px) {
       .announcement { font-size: 13px; height: auto; min-height: 44px; }
-      .page { padding: 30px 22px 0; }
-      nav { grid-template-columns: 1fr auto; gap: 18px; margin-bottom: 32px; }
+      .page { padding: 24px 18px 0; }
+      nav { grid-template-columns: 1fr auto; gap: 18px; margin-bottom: 34px; }
       nav a:not(.cta-top) { display: none; }
-      .cta-top { padding: 13px 18px; font-size: 13px; }
-      .top-banner { height: 34vh; min-height: 220px; margin-bottom: 28px; }
-      .brand-lockup { grid-template-columns: 1fr; gap: 14px; margin-bottom: 56px; }
-      .wordmark { font-size: 24vw; margin-bottom: 0; }
-      .tagline { font-size: clamp(24px, 8vw, 42px); max-width: 440px; padding-bottom: 0; }
+      .cta-top { padding: 12px 16px; font-size: 12px; }
+      .top-mark { width: 25px; height: 25px; }
+
+      .brand-lockup {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-bottom: 44px;
+        overflow: hidden;
+      }
+
+      .wordmark {
+        font-size: clamp(64px, 22vw, 116px);
+        line-height: 0.86;
+        letter-spacing: -0.055em;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        margin-left: 0;
+      }
+
+      .tagline {
+        font-size: clamp(23px, 7.2vw, 38px);
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+        max-width: 100%;
+        padding-bottom: 0;
+      }
+
       .hero-grid, .section-head, .talk { grid-template-columns: 1fr; }
-      .hero-grid { padding-bottom: 72px; }
-      .copy { padding-bottom: 0; }
+
+      .hero-grid {
+        min-height: 470px;
+        margin-bottom: 72px;
+        padding: 26px;
+        background-position: 66% center;
+        align-items: flex-end;
+      }
+
+      .hero-grid::after {
+        background:
+          linear-gradient(to right, rgba(5,5,5,0.9), rgba(5,5,5,0.52) 58%, rgba(5,5,5,0.18)),
+          linear-gradient(to bottom, rgba(5,5,5,0.08), rgba(5,5,5,0.66));
+      }
+
+      .copy { padding-bottom: 0; max-width: 100%; }
+      .copy h2 { font-size: clamp(42px, 13vw, 62px); line-height: 1; margin-bottom: 20px; }
+      .copy p { font-size: 18px; line-height: 1.34; margin-bottom: 28px; }
+      .btn { min-width: 0; width: 100%; max-width: 320px; height: 56px; font-size: 13px; }
+
+      .section { padding: 64px 0; }
+      .section-head { gap: 18px; margin-bottom: 34px; }
+      .section-title { font-size: clamp(40px, 12vw, 64px); line-height: 1; }
+      .section-copy { font-size: 18px; line-height: 1.4; }
+
       .product-grid { grid-template-columns: 1fr; }
-      .product-card { min-height: auto; gap: 52px; }
+      .product-card {
+        min-height: auto;
+        grid-template-rows: auto auto auto;
+        gap: 28px;
+        padding: 24px;
+      }
+      .product-card h3 { font-size: clamp(38px, 12vw, 54px); line-height: 1.02; }
+      li { min-height: auto; padding: 15px 0; }
+
+      .talk { gap: 28px; padding: 72px 0 84px; }
+      .talk h2 { font-size: clamp(46px, 14vw, 72px); line-height: 0.95; }
       footer { flex-direction: column; gap: 10px; }
+    }
+
+    @media (max-width: 420px) {
+      .page { padding-left: 14px; padding-right: 14px; }
+      .wordmark { font-size: clamp(56px, 21vw, 88px); letter-spacing: -0.045em; }
+      .tagline { font-size: clamp(21px, 7vw, 30px); }
+      .hero-grid { min-height: 430px; padding: 22px; background-position: 70% center; }
+      .copy h2 { font-size: clamp(38px, 12vw, 52px); }
+      .copy p { font-size: 16px; }
     }
   </style>
 </head>
@@ -371,8 +436,6 @@
       <span class="top-mark" aria-label="Overton logo"></span>
       <a class="cta-top" href="https://cal.com/parth-badhwar-fdoi5m/demo-with-overton" target="_blank" rel="noopener noreferrer">Get Started</a>
     </nav>
-
-    <section class="top-banner"></section>
     <div class="brand-lockup">
       <h1 class="wordmark">Overton</h1>
       <div class="tagline">The first AI government affairs firm</div>
@@ -380,7 +443,6 @@
 
     <section class="hero-grid" id="top">
       <div class="copy">
-        
         <h2>Win with government.</h2>
         <p>Overton combines elite lobbyists with AI agents to push your agenda faster than ever before — at a fraction of the cost.</p>
         <a class="btn" href="https://cal.com/parth-badhwar-fdoi5m/demo-with-overton" target="_blank" rel="noopener noreferrer">Get Started</a>
@@ -444,4 +506,5 @@
   </main>
 </body>
 </html>
+
 

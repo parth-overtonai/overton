@@ -1,406 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overton — The First AI Government Affairs Firm</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overton — The First AI Government Affairs Firm</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --fg: #f4f1ea;
+      --muted: rgba(244, 241, 234, 0.64);
+      --line: rgba(244, 241, 234, 0.18);
+      --panel: rgba(244, 241, 234, 0.045);
+    }
 
-        :root {
-            --bg: #0a0a0a;
-            --surface: #111111;
-            --border: #1e1e1e;
-            --border-light: #282828;
-            --border-card: #333333;
-            --text: #f2f2f2;
-            --text-dim: #888888;
-            --text-muted: #555555;
-            --white: #ffffff;
-            --black: #000000;
-            --accent: #cc2936;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            -webkit-font-smoothing: antialiased;
-        }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
 
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 48px;
-            background: rgba(10,10,10,0.92);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
+    .announcement {
+      height: 44px;
+      background: #0b0b0b;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      border-bottom: 1px solid var(--line);
+      padding: 0 18px;
+      text-align: center;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-decoration: none;
-            color: var(--text);
-        }
+    .announcement a {
+      color: var(--fg);
+      margin-left: 10px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
 
-        .logo-mark {
-            width: 30px; height: 30px;
-            border: 2px solid var(--white);
-            border-radius: 3px;
-            background: var(--black);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .page {
+      padding: 48px clamp(24px, 5vw, 92px) 0;
+    }
 
-        .logo-mark::after {
-            content: '';
-            width: 16px; height: 16px;
-            border: 1.5px solid var(--white);
-            border-radius: 50%;
-        }
+    nav {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: clamp(34px, 6vw, 96px);
+      margin-bottom: 44px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 15px;
+    }
 
-        .logo-text {
-            font-family: 'DM Serif Display', serif;
-            font-size: 20px;
-            font-weight: 400;
-        }
+    nav a { color: inherit; text-decoration: none; }
 
-        .nav-cta {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            padding: 10px 28px;
-            background: var(--white);
-            color: var(--black);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.25s, color 0.25s;
-        }
+    .top-mark {
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid var(--fg);
+      display: grid;
+      place-items: center;
+    }
 
-        .nav-cta:hover { opacity: 0.85; }
+    .top-mark::after {
+      content: "";
+      width: 15px;
+      height: 15px;
+      border: 1.5px solid var(--fg);
+      border-radius: 50%;
+    }
 
-        /* ── HERO ── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 160px 32px 120px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    .cta-top, .btn {
+      background: var(--fg);
+      color: #050505;
+      font-weight: 850;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .hero-logo {
-            width: 64px; height: 64px;
-            border: 2.5px solid var(--white);
-            border-radius: 6px;
-            background: var(--black);
-            margin-bottom: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .cta-top {
+      padding: 15px 24px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
 
-        .hero-logo::after {
-            content: '';
-            width: 34px; height: 34px;
-            border: 2px solid var(--white);
-            border-radius: 50%;
-        }
+    .top-banner {
+      width: calc(100% + clamp(48px, 10vw, 184px));
+      height: 44vh;
+      min-height: 340px;
+      margin-left: calc(clamp(24px, 5vw, 92px) * -1);
+      margin-right: calc(clamp(24px, 5vw, 92px) * -1);
+      margin-top: -12px;
+      margin-bottom: 34px;
+      position: relative;
+      overflow: hidden;
+      background: url('overton-hero.png') center / cover no-repeat;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
 
-        .hero h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(44px, 7vw, 88px);
-            font-weight: 400;
-            line-height: 1.05;
-            letter-spacing: -1.5px;
-            margin-bottom: 28px;
-        }
+    .top-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(5,5,5,0.05), rgba(5,5,5,0.18) 55%, var(--bg));
+      pointer-events: none;
+    }
 
-        .hero-sub {
-            font-size: 18px;
-            line-height: 1.65;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin-bottom: 52px;
-            font-weight: 400;
-        }
+    .brand-lockup {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: end;
+      gap: clamp(22px, 4vw, 64px);
+      margin-bottom: 72px;
+    }
 
-        .hero-cta {
-            display: inline-block;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 18px 52px;
-            background: var(--white);
-            color: var(--black);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.25s, color 0.25s;
-        }
+    .wordmark {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(86px, 16vw, 200px);
+      line-height: 0.78;
+      letter-spacing: -0.06em;
+      font-weight: 500;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-left: -0.04em;
+      margin-bottom: 0;
+    }
 
-        .hero-cta:hover { opacity: 0.85; }
+    .tagline {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 3.25vw, 50px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      color: var(--fg);
+      max-width: 560px;
+      padding-bottom: 8px;
+    }
 
-        /* ── DIVIDER ── */
-        .divider {
-            max-width: 1100px;
-            margin: 0 auto;
-            height: 1px;
-            background: var(--border);
-        }
+    .hero-grid {
+      display: block;
+      padding-bottom: 104px;
+      max-width: 760px;
+    }
 
-        /* ── PRODUCT ── */
-        .product {
-            padding: 120px 48px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    
 
-        .product-label {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 48px;
-        }
+    
 
-        .prongs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
+    .copy { padding-bottom: 22px; max-width: 620px; margin-top: 0; }
 
-        .prong {
-            border: 1px solid var(--border-card);
-            border-radius: 4px;
-            padding: 40px 32px 44px;
-            display: flex;
-            flex-direction: column;
-        }
+    .kicker {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
 
-        .prong-num {
-            font-family: 'DM Mono', monospace;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
+    .copy h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(44px, 5vw, 82px);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
 
-        .prong-name {
-            font-family: 'DM Serif Display', serif;
-            font-size: 32px;
-            font-weight: 400;
-            margin-bottom: 32px;
-            line-height: 1.1;
-        }
+    .copy p {
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+      margin-bottom: 40px;
+      color: var(--fg);
+    }
 
-        .prong-features {
-            list-style: none;
-            flex: 1;
-        }
+    .btn {
+      min-width: 270px;
+      height: 62px;
+      padding: 0 32px;
+      font-size: 15px;
+    }
 
-        .prong-features li {
-            font-size: 15px;
-            color: var(--text-dim);
-            padding: 14px 0;
-            border-top: 1px solid var(--border);
-            line-height: 1.5;
-            font-weight: 500;
-            display: flex;
-            align-items: baseline;
-            gap: 12px;
-        }
+    .section {
+      border-top: 1px solid var(--line);
+      padding: 82px 0;
+    }
 
-        .prong-features li::before {
-            content: '•';
-            color: var(--text-muted);
-            flex-shrink: 0;
-        }
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.36fr 0.64fr;
+      gap: clamp(28px, 6vw, 96px);
+      margin-bottom: 42px;
+    }
 
-        .prong-features li:last-child {
-            border-bottom: 1px solid var(--border);
-        }
+    .section-number {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
 
-        /* ── CTA SECTION ── */
-        .cta-section {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 140px 48px;
-            text-align: center;
-        }
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(44px, 6vw, 96px);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      font-weight: 500;
+    }
 
-        .cta-inner {
-            max-width: 720px;
-            margin: 0 auto;
-        }
+    .section-copy {
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.35;
+      letter-spacing: -0.025em;
+      max-width: 760px;
+    }
 
-        .cta-label {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-        }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
 
-        .cta-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(36px, 5vw, 64px);
-            font-weight: 400;
-            line-height: 1.05;
-            letter-spacing: -1px;
-            margin-bottom: 40px;
-        }
+    .product-card {
+      min-height: 390px;
+      padding: 28px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+      display: grid;
+      grid-template-rows: 68px 132px 1fr;
+      gap: 0;
+    }
 
-        .cta-btn {
-            display: inline-block;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 18px 56px;
-            background: var(--white);
-            color: var(--black);
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.25s, color 0.25s;
-        }
+    .product-card .num {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.14em;
+    }
 
-        .cta-btn:hover { opacity: 0.85; }
+    .product-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 4vw, 64px);
+      letter-spacing: -0.06em;
+      line-height: 0.95;
+      font-weight: 500;
+      margin: 0;
+      align-self: end;
+    }
 
-        /* ── FOOTER ── */
-        footer {
-            padding: 40px 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    ul {
+      list-style: none;
+      display: grid;
+      gap: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.35;
+      align-self: start;
+      border-top: 1px solid var(--line);
+    }
 
-        footer span {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
+    li {
+      min-height: 74px;
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+    }
 
-        /* ── ANIMATIONS ── */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
+    .talk {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: end;
+      padding: 96px 0 108px;
+      border-top: 1px solid var(--line);
+    }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .talk h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(54px, 9vw, 148px);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      font-weight: 500;
+      max-width: 1000px;
+    }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 800px) {
-            nav { padding: 16px 24px; }
-            .hero { padding: 140px 24px 100px; }
-            .product { padding: 80px 24px; }
-            .cta-section { padding: 100px 24px; }
-            .prongs {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            footer {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-                padding: 32px 24px;
-            }
-        }
-    </style>
+    .talk .btn { margin-bottom: 14px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 42px;
+      color: rgba(244, 241, 234, 0.46);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 900px) {
+      .announcement { font-size: 13px; height: auto; min-height: 44px; }
+      .page { padding: 30px 22px 0; }
+      nav { grid-template-columns: 1fr auto; gap: 18px; margin-bottom: 32px; }
+      nav a:not(.cta-top) { display: none; }
+      .cta-top { padding: 13px 18px; font-size: 13px; }
+      .top-banner { height: 34vh; min-height: 220px; margin-bottom: 28px; }
+      .brand-lockup { grid-template-columns: 1fr; gap: 14px; margin-bottom: 56px; }
+      .wordmark { font-size: 24vw; margin-bottom: 0; }
+      .tagline { font-size: clamp(24px, 8vw, 42px); max-width: 440px; padding-bottom: 0; }
+      .hero-grid, .section-head, .talk { grid-template-columns: 1fr; }
+      .hero-grid { padding-bottom: 72px; }
+      .copy { padding-bottom: 0; }
+      .product-grid { grid-template-columns: 1fr; }
+      .product-card { min-height: auto; gap: 52px; }
+      footer { flex-direction: column; gap: 10px; }
+    }
+  </style>
 </head>
 <body>
-
-    <nav>
-        <a href="#" class="logo">
-            <div class="logo-mark"></div>
-            <div class="logo-text">Overton</div>
-        </a>
-        <a href="https://cal.com/parth-badhwar-fdoi5m/demo-with-overton" class="nav-cta" target="_blank">Get Started</a>
+<main class="page">
+    <nav aria-label="Primary navigation">
+      <span class="top-mark" aria-label="Overton logo"></span>
+      <a class="cta-top" href="#contact">Get Started</a>
     </nav>
 
-    <div class="hero">
-        <div class="hero-logo"></div>
-        <h1>The first AI government affairs firm.</h1>
-        <p class="hero-sub">Overton combines elite lobbyists with AI agents to push your agenda faster than ever before — at a fraction of the cost.</p>
-        <a href="https://cal.com/parth-badhwar-fdoi5m/demo-with-overton" class="hero-cta" target="_blank">Get Started</a>
+    <section class="top-banner"></section>
+    <div class="brand-lockup">
+      <h1 class="wordmark">Overton</h1>
+      <div class="tagline">The first AI government affairs firm</div>
     </div>
 
-    <div class="divider"></div>
+    <section class="hero-grid" id="top">
+      <div class="copy">
+        
+        <h2>Win with government.</h2>
+        <p>Overton combines elite lobbyists with AI agents to push your agenda faster than ever before — at a fraction of the cost.</p>
+        <a class="btn" href="#contact">Get Started</a>
+      </div>
+    </section>
 
-    <div class="product">
-        <div class="product-label fade-in">Products</div>
-        <div class="prongs fade-in">
-            <div class="prong">
-                <div class="prong-num">01</div>
-                <div class="prong-name">Research</div>
-                <ul class="prong-features">
-                    <li>Real-time policy alerts</li>
-                    <li>Detailed policy briefs</li>
-                    <li>10x faster insights</li>
-                </ul>
-            </div>
-            <div class="prong">
-                <div class="prong-num">02</div>
-                <div class="prong-name">Lobbying</div>
-                <ul class="prong-features">
-                    <li>Lobbyists to engage elected officials on your behalf</li>
-                    <li>Legislative strategy</li>
-                    <li>Stakeholder mapping</li>
-                </ul>
-            </div>
-            <div class="prong">
-                <div class="prong-num">03</div>
-                <div class="prong-name">Opportunity Tracking</div>
-                <ul class="prong-features">
-                    <li>Agents proactively flag grants, contracts, and new opportunities</li>
-                    <li>Agents help execute applications</li>
-                    <li>Never miss a funding opportunity</li>
-                </ul>
-            </div>
+    <section class="section" id="products">
+      <div class="section-head">
+        <div class="section-number">Products</div>
+        <div>
+          <h2 class="section-title">Government affairs, rebuilt around agents.</h2>
+          <p class="section-copy">Overton pairs human political judgment with AI systems that monitor policy, draft briefs, map stakeholders, and flag opportunities before they disappear.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="cta-section">
-        <div class="cta-inner">
-            <div class="cta-label fade-in">Let's talk</div>
-            <h2 class="cta-title fade-in">Ready to win with government?</h2>
-            <a href="https://cal.com/parth-badhwar-fdoi5m/demo-with-overton" class="cta-btn fade-in" target="_blank">Get Started</a>
-        </div>
-    </div>
+      <div class="product-grid">
+        <article class="product-card" id="research">
+          <div class="num">01</div>
+          <h3>Research</h3>
+          <ul>
+              <li>Real-time policy alerts</li>
+              <li>Detailed policy briefs</li>
+              <li>10x faster insights</li>
+            </ul>
+        </article>
+
+        <article class="product-card">
+          <div class="num">02</div>
+          <h3>Lobbying</h3>
+          <ul>
+              <li>Lobbyists to engage elected officials on your behalf</li>
+              <li>Legislative strategy</li>
+              <li>Stakeholder mapping</li>
+            </ul>
+        </article>
+
+        <article class="product-card">
+          <div class="num">03</div>
+          <h3>Opportunity<br>Tracking</h3>
+          <ul>
+              <li>Agents proactively flag grants, contracts, and new opportunities</li>
+              <li>Agents help execute applications</li>
+              <li>Never miss a funding opportunity</li>
+            </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="talk" id="contact">
+      <div>
+        <div class="kicker">Let's talk</div>
+        <h2>Ready to win with government?</h2>
+      </div>
+      <a class="btn" href="mailto:hello@overtonai.co">Get Started</a>
+    </section>
 
     <footer>
-        <span>© 2026 Overton</span>
+      <span>© 2026 Overton</span>
+      <span>The first AI government affairs firm</span>
     </footer>
-
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    </script>
-
+  </main>
 </body>
 </html>

@@ -348,61 +348,81 @@
     }
 
     @media (max-width: 900px) {
-      .announcement { font-size: 13px; height: auto; min-height: 44px; }
-      .page { padding: 24px 18px 0; }
-      nav { grid-template-columns: 1fr auto; gap: 18px; margin-bottom: 34px; }
+      .page { padding: 22px 18px 0; }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 44px;
+      }
+
       nav a:not(.cta-top) { display: none; }
-      .cta-top { padding: 12px 16px; font-size: 12px; }
-      .top-mark { width: 25px; height: 25px; }
+      .cta-top {
+        width: auto;
+        min-width: 170px;
+        padding: 13px 20px;
+        font-size: 13px;
+      }
+
+      .top-mark { width: 26px; height: 26px; flex: 0 0 auto; }
+      .top-mark::after { width: 14px; height: 14px; }
 
       .brand-lockup {
-        grid-template-columns: 1fr;
-        gap: 18px;
-        margin-bottom: 44px;
-        overflow: hidden;
+        display: block;
+        margin-bottom: 48px;
+        overflow: visible;
       }
 
       .wordmark {
-        font-size: clamp(64px, 22vw, 116px);
-        line-height: 0.86;
+        display: block;
+        font-size: clamp(52px, 17vw, 78px);
+        line-height: 0.9;
         letter-spacing: -0.055em;
-        white-space: normal;
-        overflow-wrap: anywhere;
-        margin-left: 0;
+        white-space: nowrap;
+        overflow-wrap: normal;
+        margin: 0 0 24px 0;
+        max-width: 100%;
       }
 
       .tagline {
-        font-size: clamp(23px, 7.2vw, 38px);
+        font-size: clamp(28px, 8vw, 42px);
         line-height: 1.08;
         letter-spacing: -0.035em;
-        max-width: 100%;
+        max-width: 92%;
         padding-bottom: 0;
       }
 
       .hero-grid, .section-head, .talk { grid-template-columns: 1fr; }
 
       .hero-grid {
-        min-height: 470px;
+        min-height: 520px;
         margin-bottom: 72px;
-        padding: 26px;
-        background-position: 66% center;
+        padding: 28px 24px;
+        background-position: 70% center;
         align-items: flex-end;
       }
 
       .hero-grid::after {
         background:
-          linear-gradient(to right, rgba(5,5,5,0.9), rgba(5,5,5,0.52) 58%, rgba(5,5,5,0.18)),
-          linear-gradient(to bottom, rgba(5,5,5,0.08), rgba(5,5,5,0.66));
+          linear-gradient(to right, rgba(5,5,5,0.92), rgba(5,5,5,0.6) 58%, rgba(5,5,5,0.2)),
+          linear-gradient(to bottom, rgba(5,5,5,0.12), rgba(5,5,5,0.72));
       }
 
       .copy { padding-bottom: 0; max-width: 100%; }
-      .copy h2 { font-size: clamp(42px, 13vw, 62px); line-height: 1; margin-bottom: 20px; }
-      .copy p { font-size: 18px; line-height: 1.34; margin-bottom: 28px; }
-      .btn { min-width: 0; width: 100%; max-width: 320px; height: 56px; font-size: 13px; }
+      .copy h2 {
+        font-size: clamp(42px, 12vw, 58px);
+        line-height: 1.02;
+        letter-spacing: -0.045em;
+        margin-bottom: 22px;
+      }
+      .copy p { font-size: 17px; line-height: 1.38; margin-bottom: 30px; }
+      .btn { min-width: 0; width: 100%; max-width: 300px; height: 56px; font-size: 13px; }
 
       .section { padding: 64px 0; }
       .section-head { gap: 18px; margin-bottom: 34px; }
-      .section-title { font-size: clamp(40px, 12vw, 64px); line-height: 1; }
+      .section-title { font-size: clamp(40px, 11vw, 62px); line-height: 1; }
       .section-copy { font-size: 18px; line-height: 1.4; }
 
       .product-grid { grid-template-columns: 1fr; }
@@ -412,20 +432,22 @@
         gap: 28px;
         padding: 24px;
       }
-      .product-card h3 { font-size: clamp(38px, 12vw, 54px); line-height: 1.02; }
+      .product-card h3 { font-size: clamp(38px, 11vw, 52px); line-height: 1.04; }
       li { min-height: auto; padding: 15px 0; }
 
       .talk { gap: 28px; padding: 72px 0 84px; }
-      .talk h2 { font-size: clamp(46px, 14vw, 72px); line-height: 0.95; }
+      .talk h2 { font-size: clamp(46px, 13vw, 68px); line-height: 0.98; }
       footer { flex-direction: column; gap: 10px; }
     }
 
     @media (max-width: 420px) {
       .page { padding-left: 14px; padding-right: 14px; }
-      .wordmark { font-size: clamp(56px, 21vw, 88px); letter-spacing: -0.045em; }
-      .tagline { font-size: clamp(21px, 7vw, 30px); }
-      .hero-grid { min-height: 430px; padding: 22px; background-position: 70% center; }
-      .copy h2 { font-size: clamp(38px, 12vw, 52px); }
+      nav { margin-bottom: 38px; }
+      .cta-top { min-width: 150px; padding: 12px 18px; }
+      .wordmark { font-size: clamp(46px, 16.2vw, 66px); letter-spacing: -0.05em; }
+      .tagline { font-size: clamp(25px, 7.4vw, 34px); max-width: 96%; }
+      .hero-grid { min-height: 500px; padding: 24px 22px; background-position: 72% center; }
+      .copy h2 { font-size: clamp(40px, 11vw, 50px); }
       .copy p { font-size: 16px; }
     }
   </style>
@@ -506,5 +528,3 @@
   </main>
 </body>
 </html>
-
-
